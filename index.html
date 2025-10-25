@@ -7,6 +7,7 @@
   body { display: flex; gap: 20px; font-family: sans-serif; padding: 20px; }
   #grid { display: grid; grid-template-columns: repeat(10, 50px); grid-template-rows: repeat(10, 50px); gap: 2px; }
   .cell { width: 50px; height: 50px; border: 1px solid #aaa; position: relative; }
+  .beeper { width: 20px; height: 20px; background-color: blue; border-radius: 50%; position: absolute; bottom: 2px; right: 2px; }
   #robot { width: 40px; height: 40px; background-color: red; position: absolute; transition: all 0.3s; }
   #editor { width: 300px; height: 500px; font-family: monospace; }
   button { margin-top: 10px; }
@@ -15,7 +16,7 @@
 <body>
 
 <div>
-  <textarea id="editor" placeholder="Napiš svůj Karel kód, např.&#10;move();&#10;turnLeft();"></textarea>
+  <textarea id="editor" placeholder="Napiš svůj Karel kód, např.&#10;move();&#10;turnLeft();&#10;putBeeper();"></textarea>
   <br>
   <button id="runBtn">Spustit</button>
 </div>
@@ -24,11 +25,20 @@
 
 <script>
 const grid = document.getElementById('grid');
-for(let i=0;i<100;i++){
-  const cell = document.createElement('div');
-  cell.className='cell';
-  grid.appendChild(cell);
+const GRID_SIZE = 10;
+
+// Inicializace mřížky
+function createGrid() {
+  grid.innerHTML = '';
+  for(let i=0;i<GRID_SIZE*GRID_SIZE;i++){
+    const cell = document.createElement('div');
+    cell.className='cell';
+    cell.dataset.beepers = 0; // počet beeperů
+    grid.appendChild(cell);
+  }
 }
+
+createGrid();
 
 // Robot
 const robot = document.createElement('div');
@@ -37,6 +47,20 @@ grid.children[0].appendChild(robot);
 
 let posX=0, posY=0, dir='right'; // right, left, up, down
 
+function resetRobot() {
+  posX=0; posY=0; dir='right';
+  updateRobotRotation();
+  // Odstranit robota ze všech buněk
+  document.querySelectorAll('#grid .cell').forEach(cell=>{
+    if(cell.contains(robot)) cell.removeChild(robot);
+  });
+  grid.children[0].appendChild(robot);
+  // Odstranit všechny beepery
+  document.querySelectorAll('.beeper').forEach(b=>b.remove());
+  document.querySelectorAll('#grid .cell').forEach(c=>c.dataset.beepers=0);
+}
+
+// --- Karel API ---
 function move() {
   let dx=0, dy=0;
   if(dir==='right') dx=1;
@@ -44,10 +68,10 @@ function move() {
   if(dir==='up') dy=-1;
   if(dir==='down') dy=1;
   const newX=posX+dx, newY=posY+dy;
-  if(newX<0||newX>9||newY<0||newY>9) return;
-  grid.children[posY*10 + posX].removeChild(robot);
+  if(newX<0||newX>=GRID_SIZE||newY<0||newY>=GRID_SIZE) return;
+  grid.children[posY*GRID_SIZE + posX].removeChild(robot);
   posX=newX; posY=newY;
-  grid.children[posY*10 + posX].appendChild(robot);
+  grid.children[posY*GRID_SIZE + posX].appendChild(robot);
 }
 
 function turnLeft() {
@@ -74,8 +98,26 @@ function updateRobotRotation() {
   robot.style.transform=`rotate(${angle}deg)`;
 }
 
-// Spouštění kódu
+function putBeeper() {
+  const cell = grid.children[posY*GRID_SIZE + posX];
+  const beeper = document.createElement('div');
+  beeper.className='beeper';
+  cell.appendChild(beeper);
+  cell.dataset.beepers = parseInt(cell.dataset.beepers)+1;
+}
+
+function pickBeeper() {
+  const cell = grid.children[posY*GRID_SIZE + posX];
+  if(cell.dataset.beepers>0){
+    const beeper = cell.querySelector('.beeper');
+    if(beeper) cell.removeChild(beeper);
+    cell.dataset.beepers = parseInt(cell.dataset.beepers)-1;
+  }
+}
+
+// --- Spouštění kódu ---
 document.getElementById('runBtn').addEventListener('click', ()=>{
+  resetRobot();
   const code = document.getElementById('editor').value;
   const commands = code.split(';').map(c=>c.trim()).filter(c=>c);
   let i=0;
@@ -89,6 +131,7 @@ document.getElementById('runBtn').addEventListener('click', ()=>{
   }
   runNext();
 });
+
 </script>
 
 </body>
