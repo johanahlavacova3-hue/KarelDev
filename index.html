@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<title>Karel Redesign</title>
+<style>
+  body { display: flex; justify-content: center; padding-top: 50px; }
+  #grid { display: grid; grid-template-columns: repeat(10, 50px); grid-template-rows: repeat(10, 50px); gap: 2px; }
+  .cell { width: 50px; height: 50px; border: 1px solid #aaa; position: relative; }
+  #robot { width: 40px; height: 40px; background-color: red; position: absolute; transition: all 0.2s; }
+</style>
+</head>
+<body>
+<div id="grid">
+  <!-- 100 políček -->
+  <script>
+    const grid = document.getElementById('grid');
+    for(let i=0;i<100;i++){
+      const cell = document.createElement('div');
+      cell.className='cell';
+      grid.appendChild(cell);
+    }
+
+    // Robot
+    const robot = document.createElement('div');
+    robot.id = 'robot';
+    grid.children[0].appendChild(robot);
+
+    let posX = 0, posY = 0, dir = 'right'; // right, left, up, down
+
+    function moveRobot(dx, dy) {
+      const newX = posX + dx;
+      const newY = posY + dy;
+      if(newX<0 || newX>9 || newY<0 || newY>9) return;
+      grid.children[posY*10 + posX].removeChild(robot);
+      posX = newX; posY = newY;
+      grid.children[posY*10 + posX].appendChild(robot);
+    }
+
+    function turnRobot(direction) {
+      dir = direction;
+      let angle = 0;
+      if(dir==='up') angle = -90;
+      if(dir==='down') angle = 90;
+      if(dir==='left') angle = 180;
+      robot.style.transform = `rotate(${angle}deg)`;
+    }
+
+    document.addEventListener('keydown', e => {
+      if(e.key==='ArrowUp'){ turnRobot('up'); moveRobot(0,-1); }
+      if(e.key==='ArrowDown'){ turnRobot('down'); moveRobot(0,1); }
+      if(e.key==='ArrowLeft'){ turnRobot('left'); moveRobot(-1,0); }
+      if(e.key==='ArrowRight'){ turnRobot('right'); moveRobot(1,0); }
+    });
+  </script>
+</div>
+</body>
+</html>
