@@ -87,8 +87,8 @@ button {
    ROBOT KAREL
 ----------------------------------------- */
 #robot {
-  width: 1000%;                  /* větší než buňka, překrývá okolní buňky */
-  height: 1000%;
+  width: 500%;                  /* větší než buňka, překrývá okolní buňky */
+  height: 500%;
   background-image: url('KarelRobot.png');
   background-size: contain;
   background-repeat: no-repeat;
