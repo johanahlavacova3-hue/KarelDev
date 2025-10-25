@@ -44,14 +44,15 @@ button {
   background-color: #000000;
   max-width: 350px;
   max-height: 200px;
-  background-image: url('grid.png');
-  background-size: cover;
-  background-position: center;
 }
 
 .cell {
   border: 1px solid #555;
   position: relative;
+  background-image: url('grid.png');
+  background-size: cover; /* nebo contain podle potřeby */
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 #robot {
