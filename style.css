@@ -37,8 +37,8 @@ button {
   display: grid;
   flex: 1;
   aspect-ratio: 1 / 1;
-  border: 2px solid #444;
-  background-color: #f0f0f0;
+  border: 2px solid #363636;
+  background-color: #1f1f1f;
   max-width: 200px;
   max-height: 200px;
 }
