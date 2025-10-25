@@ -39,8 +39,8 @@ button {
   aspect-ratio: 1 / 1;
   border: 2px solid #444;
   background-color: #f0f0f0;
-  max-width: 600px;
-  max-height: 600px;
+  max-width: 200px;
+  max-height: 200px;
 }
 
 .cell {
