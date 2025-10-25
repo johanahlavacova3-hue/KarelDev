@@ -6,7 +6,7 @@ body {
   flex-direction: row;
   gap: 20px;
   font-family: monospace;
-  padding: 20px;               /* větší padding */
+  padding: 20px;
   height: 100vh;
   margin: 0;
   box-sizing: border-box;
@@ -21,7 +21,7 @@ body {
 .sidebar {
   display: flex;
   flex-direction: column;
-  width: 350px;                /* širší sidebar */
+  width: 350px;
 }
 
 /* --------------------------------------
@@ -31,9 +31,10 @@ body {
   flex: 1;
   font-family: monospace;
   resize: none;
-  padding: 12px;               /* větší padding */
+  padding: 16px;              /* větší padding */
   box-sizing: border-box;
-  font-size: 16px;             /* větší text */
+  font-size: 16px;
+  height: 500px;              /* výrazně vyšší editor */
 }
 
 /* --------------------------------------
@@ -41,13 +42,13 @@ body {
 ----------------------------------------- */
 button {
   margin-top: 12px;
-  width: 80px;                 /* fixní velikost tlačítka */
-  height: 80px;
+  width: 50px;                /* menší tlačítko */
+  height: 50px;
   background-image: url('Play.png'); /* obrázek Play */
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  border: none;                /* bez rámečku */
+  border: none;
   cursor: pointer;
 }
 
@@ -61,7 +62,7 @@ button {
   grid-template-rows: repeat(4, 1fr);
   gap: 0;
   border: 2px solid #363636;
-  max-width: 700px;            /* větší grid */
+  max-width: 700px;
   max-height: 400px;
   width: 700px;
   height: 400px;
@@ -78,35 +79,37 @@ button {
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  width: 10%;
-  height: 10%;
+  width: 100%;
+  height: 100%;
 }
 
 /* --------------------------------------
    ROBOT KAREL
 ----------------------------------------- */
 #robot {
-  width: 80%;                  /* větší než předtím */
-  height: 80%;
+  width: 120%;                  /* větší než buňka, překrývá okolní buňky */
+  height: 120%;
   background-image: url('KarelRobot.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   position: absolute;
-  top: 10%;
-  left: 10%;
+  top: -10%;                    /* posunutí nahoru, aby byl vystředěn */
+  left: -10%;                   /* posunutí doleva */
   transition: all 0.3s;
+  z-index: 10;                  /* aby byl vždy nad beepery a buňkami */
 }
 
 /* --------------------------------------
    BEEPERY (sbíratelné objekty)
 ----------------------------------------- */
 .beeper {
-  width: 40%;                  /* větší než předtím */
+  width: 40%;
   height: 40%;
-  background-color: blue;      /* modrá barva */
+  background-color: blue;
   border-radius: 50%;
   position: absolute;
   bottom: 5%;
   right: 5%;
+  z-index: 5;                   /* pod Karlem */
 }
