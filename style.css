@@ -1,84 +1,110 @@
-/* style.css */
-
+/* --------------------------------------
+   CELÝ TĚLO STRÁNKY
+----------------------------------------- */
 body {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-  font-family: sans-serif;
-  padding: 10px;
-  height: 100vh;
-  margin: 0;
-  box-sizing: border-box;
-  background-color: #000000;
-  justify-content: center;
-  align-items: center;
+  display: flex;                 /* Rozložení stránky do řádku (sidebar + grid vedle sebe) */
+  flex-direction: row;           /* Horizontální směrování */
+  gap: 20px;                     /* Mezery mezi hlavními prvky */
+  font-family: monospace;       /* Písmo stránky */
+  padding: 10px;                 /* Vnitřní okraje stránky */
+  height: 100vh;                 /* Výška 100% okna prohlížeče */
+  margin: 0;                     /* Žádné okraje kolem stránky */
+  box-sizing: border-box;        /* Padding se počítá do velikosti elementu */
+  background-color: #000000;     /* Černé pozadí celé stránky */
+  justify-content: center;       /* Horizontální centrování hlavních prvků */
+  align-items: center;           /* Vertikální centrování hlavních prvků */
 }
 
+/* --------------------------------------
+   POSTRANNÍ PANEL (SIDE BAR)
+   Obsahuje textový editor a tlačítko Spustit
+----------------------------------------- */
 .sidebar {
-  display: flex;
-  flex-direction: column;
-  width: 250px;
+  display: flex;                 /* Flexbox uvnitř sidebaru */
+  flex-direction: column;        /* Vertikální rozložení */
+  width: 300px;                  /* Pevná šířka panelu */
 }
 
+/* --------------------------------------
+   TEXTOVÝ EDITOR PRO UŽIVATELE
+----------------------------------------- */
 #editor {
-  flex: 1;
-  font-family: monospace;
-  resize: none;
-  padding: 8px;
-  box-sizing: border-box;
-  font-size: 14px;
+  flex: 1;                       /* Zabírá všechen volný prostor v sidebaru */
+  font-family: monospace;        /* Písmo vhodné pro kód */
+  resize: none;                  /* Nelze měnit velikost editoru myší */
+  padding: 8px;                  /* Vnitřní okraje textu */
+  box-sizing: border-box;        /* Padding zahrnut do velikosti elementu */
+  font-size: 14px;               /* Velikost textu */
 }
 
+/* --------------------------------------
+   TLAČÍTKO SPUSTIT
+----------------------------------------- */
 button {
-  margin-top: 8px;
-  padding: 8px;
-  font-size: 14px;
-  cursor: pointer;
+  margin-top: 8px;               /* Mezera nad tlačítkem */
+  padding: 8px;                   /* Vnitřní okraje tlačítka */
+  font-size: 14px;               /* Velikost textu tlačítka */
+  cursor: pointer;               /* Kurzor ruky při najetí myší */
 }
 
+/* --------------------------------------
+   MŘÍŽKA PRO KAREL ROBOTA
+   7 sloupců × 4 řádky
+----------------------------------------- */
 #grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: repeat(4, 1fr);
-  gap: 0;
-  border: 2px solid #363636;
-  max-width: 350px;
-  max-height: 200px;
-  width: 350px;
-  height: 200px;
-  background-color: #000000;
+  display: grid;                  /* Použití CSS grid layoutu */
+  grid-template-columns: repeat(7, 1fr); /* 7 sloupců stejné velikosti */
+  grid-template-rows: repeat(4, 1fr);    /* 4 řádky stejné velikosti */
+  gap: 0;                         /* Žádná mezera mezi buňkami */
+  border: 0px solid #363636;      /* Okraje mřížky */
+  max-width: 400px;               /* Maximální šířka mřížky */
+  max-height: 600px;              /* Maximální výška mřížky */
+  width: 350px;                   /* Fixní šířka */
+  height: 200px;                  /* Fixní výška */
+  background-color: #000000;      /* Černé pozadí mřížky */
 }
 
+/* --------------------------------------
+   JEDNOTLIVÉ BUŇKY MŘÍŽKY
+----------------------------------------- */
 .cell {
-  border: 1px solid #000000;
-  position: relative;
-  background-image: url('grid.png');
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  width: 100%;
-  height: 100%;
+  border: 0px solid #000000;      /* Okraje buněk (černé, takže splynou s pozadím) */
+  position: relative;             /* Potřebné pro absolutně pozicované prvky uvnitř (robot, beeper) */
+  background-image: url('grid.png'); /* Obrázek pozadí buňky */
+  background-size: contain;       /* Obrázek se vejde do buňky */
+  background-position: center;    /* Obrázek je vystředěn */
+  background-repeat: no-repeat;   /* Obrázek se neopakuje */
+  width: 100%;                    /* Buňka zabírá 100% prostoru gridu */
+  height: 100%;                   /* Buňka zabírá 100% výšky gridu */
 }
 
+/* --------------------------------------
+   ROBOT KAREL
+----------------------------------------- */
 #robot {
-  width: 70%;
-  height: 70%;
-  background-image: url('KarelRobot.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  position: absolute;
-  top: 15%;
-  left: 15%;
-  transition: all 0.3s;
+  width: 70%;                     /* Zabírá 70% velikosti buňky */
+  height: 70%;                    /* Zabírá 70% výšky buňky */
+  background-image: url('KarelRobot.png'); /* Obrázek robota */
+  background-size: contain;       /* Obrázek se vejde do prostoru */
+  background-repeat: no-repeat;   /* Nepřekrývá se */
+  background-position: center;    /* Vystředěný obrázek */
+  position: absolute;             /* Absolutní pozice uvnitř buňky */
+  top: 15%;                       /* Posun z horního okraje buňky */
+  left: 15%;                      /* Posun z levého okraje buňky */
+  transition: all 0.3s;           /* Plynulá animace při pohybu */
 }
 
+/* --------------------------------------
+   BEEPERY (sbíratelné objekty)
+----------------------------------------- */
 .beeper {
-  width: 35%;
-  height: 35%;
-  background-color: blue;
-  border-radius: 50%;
-  position: absolute;
-  bottom: 5%;
-  right: 5%;
+  width: 35%;                     /* Velikost beeperu relativně k buňce */
+  height: 35%;                    /* Výška beeperu */
+  background-image: url('KarelRobot.png'); /* Obrázek robota */
+  background-size: contain;       /* Obrázek se vejde do prostoru */
+  background-repeat: no-repeat;   /* Nepřekrývá se */
+  background-position: center;            /* Kulatý tvar */
+  position: absolute;             /* Absolutní pozice uvnitř buňky */
+  bottom: 5%;                     /* Umístění od spodního okraje buňky */
+  right: 5%;                      /* Umístění od pravého okraje buňky */
 }
