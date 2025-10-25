@@ -10,7 +10,7 @@ body {
   height: 100vh;                 /* Výška 100% okna prohlížeče */
   margin: 0;                     /* Žádné okraje kolem stránky */
   box-sizing: border-box;        /* Padding se počítá do velikosti elementu */
-  background-color: #000000;     /* Černé pozadí celé stránky */
+  background-color: #DDD92A;     /* Černé pozadí celé stránky */
   justify-content: center;       /* Horizontální centrování hlavních prvků */
   align-items: center;           /* Vertikální centrování hlavních prvků */
 }
