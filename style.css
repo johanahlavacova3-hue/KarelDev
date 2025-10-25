@@ -1,0 +1,65 @@
+/* style.css */
+
+body {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  font-family: sans-serif;
+  padding: 20px;
+  height: 100vh;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+#editor {
+  flex: 1;
+  font-family: monospace;
+  resize: none;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+button {
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+#grid {
+  display: grid;
+  flex: 1;
+  aspect-ratio: 1 / 1;
+  border: 2px solid #444;
+  background-color: #f0f0f0;
+}
+
+.cell {
+  border: 1px solid #aaa;
+  position: relative;
+}
+
+#robot {
+  width: 80%;
+  height: 80%;
+  background-color: red;
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  transition: all 0.3s;
+}
+
+.beeper {
+  width: 40%;
+  height: 40%;
+  background-color: blue;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+}
