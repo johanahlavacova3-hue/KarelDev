@@ -42,8 +42,10 @@ body {
 ----------------------------------------- */
 button {
   margin-top: 8px;               /* Mezera nad tlačítkem */
-  padding: 8px;                   /* Vnitřní okraje tlačítka */
-  font-size: 14px;               /* Velikost textu tlačítka */
+   background-image: url('KarelRobot.png'); /* Obrázek robota */
+  background-size: contain;       /* Obrázek se vejde do prostoru */
+  background-repeat: no-repeat;   /* Nepřekrývá se */
+  background-position: center;             /* Velikost textu tlačítka */
   cursor: pointer;               /* Kurzor ruky při najetí myší */
 }
 
