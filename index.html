@@ -16,13 +16,14 @@
 
 <script>
 const grid = document.getElementById('grid');
-const GRID_SIZE = 13;
+const GRID_COLS = 7;
+const GRID_ROWS = 4;
 
 function createGrid() {
   grid.innerHTML = '';
-  grid.style.gridTemplateColumns = `repeat(${GRID_SIZE}, 1fr)`;
-  grid.style.gridTemplateRows = `repeat(${GRID_SIZE}, 1fr)`;
-  for(let i=0;i<GRID_SIZE*GRID_SIZE;i++){
+  grid.style.gridTemplateColumns = `repeat(${GRID_COLS}, 1fr)`;
+  grid.style.gridTemplateRows = `repeat(${GRID_ROWS}, 1fr)`;
+  for(let i=0;i<GRID_COLS*GRID_ROWS;i++){
     const cell = document.createElement('div');
     cell.className='cell';
     cell.dataset.beepers = 0;
@@ -35,8 +36,8 @@ const robot = document.createElement('div');
 robot.id = 'robot';
 grid.appendChild(robot);
 
-let posX=0, posY=GRID_SIZE-1, dir='right';
-grid.children[posY*GRID_SIZE + posX].appendChild(robot);
+let posX=0, posY=GRID_ROWS-1, dir='right';
+grid.children[posY*GRID_COLS + posX].appendChild(robot);
 
 function updateRobotRotation() {
   let angle=0;
@@ -48,10 +49,10 @@ function updateRobotRotation() {
 updateRobotRotation();
 
 function resetRobot() {
-  posX=0; posY=GRID_SIZE-1; dir='right';
+  posX=0; posY=GRID_ROWS-1; dir='right';
   updateRobotRotation();
   document.querySelectorAll('#grid .cell').forEach(cell=>{ if(cell.contains(robot)) cell.removeChild(robot); });
-  grid.children[posY*GRID_SIZE + posX].appendChild(robot);
+  grid.children[posY*GRID_COLS + posX].appendChild(robot);
   document.querySelectorAll('.beeper').forEach(b=>b.remove());
   document.querySelectorAll('#grid .cell').forEach(c=>c.dataset.beepers=0);
 }
@@ -63,10 +64,10 @@ function move() {
   if(dir==='up') dy=-1;
   if(dir==='down') dy=1;
   const newX=posX+dx, newY=posY+dy;
-  if(newX<0||newX>=GRID_SIZE||newY<0||newY>=GRID_SIZE) return;
-  grid.children[posY*GRID_SIZE + posX].removeChild(robot);
+  if(newX<0||newX>=GRID_COLS||newY<0||newY>=GRID_ROWS) return;
+  grid.children[posY*GRID_COLS + posX].removeChild(robot);
   posX=newX; posY=newY;
-  grid.children[posY*GRID_SIZE + posX].appendChild(robot);
+  grid.children[posY*GRID_COLS + posX].appendChild(robot);
 }
 
 function turnLeft() {
@@ -86,7 +87,7 @@ function turnRight() {
 }
 
 function putBeeper() {
-  const cell = grid.children[posY*GRID_SIZE + posX];
+  const cell = grid.children[posY*GRID_COLS + posX];
   const beeper = document.createElement('div');
   beeper.className='beeper';
   cell.appendChild(beeper);
@@ -94,7 +95,7 @@ function putBeeper() {
 }
 
 function pickBeeper() {
-  const cell = grid.children[posY*GRID_SIZE + posX];
+  const cell = grid.children[posY*GRID_COLS + posX];
   if(cell.dataset.beepers>0){
     const beeper = cell.querySelector('.beeper');
     if(beeper) cell.removeChild(beeper);
