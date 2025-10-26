@@ -57,10 +57,8 @@ button {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  background-color: #1f1f1f;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  margin-top: 12px;
 }
 
 button:hover {
@@ -76,7 +74,7 @@ button:hover {
   grid-template-rows: repeat(4, 1fr);
   border: 0px solid #2c2c2c;
   width: 700px;
-  height: 400px;
+  height: 500px;
   background-color: #0f0f0f;
 }
 
@@ -95,8 +93,8 @@ button:hover {
    ROBOT KAREL
 ----------------------------------------- */
 #robot {
-  width: 120%;
-  height: 120%;
+  width: 110%;
+  height: 110%;
   background-image: url('KarelRobot.png');
   background-size: contain;
   background-repeat: no-repeat;
@@ -112,12 +110,9 @@ button:hover {
    BEEPERY
 ----------------------------------------- */
 .beeper {
-  width: 35%;
-  height: 35%;
-  background-color: #5b8dff;
-  border-radius: 50%;
-  position: absolute;
-  bottom: 5%;
-  right: 5%;
-  box-shadow: 0 0 8px #5b8dff;
+ position: relative;
+  background-image: url('Beeper.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
 }
