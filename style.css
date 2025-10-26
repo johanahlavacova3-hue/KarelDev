@@ -7,7 +7,7 @@ body {
   gap: 20px;
   font-family: monospace;
   padding: 20px;               /* větší padding */
-  height: 100vh;
+  height: 1000vh;
   margin: 0;
   box-sizing: border-box;
   background-color: #000000;
@@ -42,8 +42,8 @@ body {
 ----------------------------------------- */
 button {
   margin-top: 12px;
-  width: 80px;                 /* fixní velikost tlačítka */
-  height: 80px;
+  width: 40px;                 /* fixní velikost tlačítka */
+  height: 40px;
   background-image: url('Play.png'); /* obrázek Play */
   background-size: contain;
   background-repeat: no-repeat;
@@ -87,8 +87,8 @@ button {
    ROBOT KAREL
 ----------------------------------------- */
 #robot {
-  width: 180%;                  /* větší než předtím */
-  height: 180%;
+  width: 480%;                  /* větší než předtím */
+  height: 480%;
   background-image: url('KarelRobot.png');
   background-size: contain;
   background-repeat: no-repeat;
