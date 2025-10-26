@@ -7,7 +7,7 @@ body {
   gap: 20px;
   font-family: monospace;
   padding: 20px;               /* větší padding */
-  height: 1000vh;
+  height: 10vh;
   margin: 0;
   box-sizing: border-box;
   background-color: #000000;
@@ -42,6 +42,8 @@ body {
 ----------------------------------------- */
 button {
   margin-top: 12px;
+
+   border: 1px solid #000000;
   width: 40px;                 /* fixní velikost tlačítka */
   height: 40px;
   background-image: url('Play.png'); /* obrázek Play */
@@ -74,7 +76,7 @@ button {
 ----------------------------------------- */
 .cell {
   border: 1px solid #000000;
-  position: relative;
+  position: center;
   background-image: url('grid.png');
   background-size: contain;
   background-position: center;
