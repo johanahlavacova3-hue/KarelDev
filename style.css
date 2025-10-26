@@ -111,12 +111,17 @@ button:hover {
 }
 
 /* --------------------------------------
-   BEEPERY
+   BEEPERY (sbíratelné objekty)
 ----------------------------------------- */
 .beeper {
- position: relative;
+  position: absolute;
+  width: 35%;                 /* velikost v poměru k buňce */
+  height: 35%;
+  bottom: 10%;                /* umístění ke spodnímu okraji buňky */
+  right: 10%;
   background-image: url('Beeper.png');
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+  z-index: 5;                 /* aby byl vidět nad pozadím, ale pod robotem */
 }
