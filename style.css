@@ -1,115 +1,130 @@
 /* --------------------------------------
-   CELÝ TĚLO STRÁNKY
+   CELÉ TĚLO STRÁNKY
 ----------------------------------------- */
 body {
   display: flex;
   flex-direction: row;
   gap: 20px;
   font-family: monospace;
-  padding: 20px;               /* větší padding */
+  padding: 20px;
   height: 100vh;
   margin: 0;
   box-sizing: border-box;
-  background-color: #000000;
+  background-color: #1a1a1a;      /* tmavé pozadí */
   justify-content: center;
   align-items: center;
+  color: #bfbfbf;                 /* světle šedý text */
 }
 
 /* --------------------------------------
-   POSTRANNÍ PANEL (SIDE BAR)
+   POSTRANNÍ PANEL (EDITOR)
 ----------------------------------------- */
 .sidebar {
   display: flex;
   flex-direction: column;
-  width: 350px;                /* širší sidebar */
+  width: 320px;
+  background-color: #202020;       /* o něco světlejší šedá než pozadí */
+  border: 2px solid #2d2d2d;       /* decentní orámování */
+  border-radius: 6px;
+  box-shadow: inset 0 0 10px #0a0a0a;
 }
 
 /* --------------------------------------
-   TEXTOVÝ EDITOR PRO UŽIVATELE
+   TEXTOVÝ EDITOR
 ----------------------------------------- */
 #editor {
   flex: 1;
   font-family: monospace;
-  height: 400px;
+  height: 480px;
   resize: none;
-  padding: 12px;               /* větší padding */
+  padding: 12px;
   box-sizing: border-box;
-  font-size: 16px;             /* větší text */
+  font-size: 15px;
+  color: #00ffcc;                  /* zeleno-tyrkysový text jako v terminálu */
+  background-color: #141414;       /* tmavé pozadí editoru */
+  border: none;
+  outline: none;
 }
 
 /* --------------------------------------
    TLAČÍTKO SPUSTIT
 ----------------------------------------- */
 button {
-  margin-top: 12px;
-
-   border: 1px solid #000000;
-  width: 40px;                 /* fixní velikost tlačítka */
-  height: 40px;
-  background-image: url('Play.png'); /* obrázek Play */
+  margin: 12px auto;
+  width: 45px;
+  height: 45px;
+  background-image: url('Play.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  border: none;                /* bez rámečku */
+  background-color: #2a2a2a;
+  border: 1px solid #3a3a3a;
+  border-radius: 4px;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+  background-color: #3a3a3a;
+  transform: scale(1.05);
 }
 
 /* --------------------------------------
-   MŘÍŽKA PRO KAREL ROBOTA
-   7 sloupců × 4 řádky
+   MŘÍŽKA HERNÍHO SVĚTA
 ----------------------------------------- */
 #grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(4, 1fr);
   gap: 0;
-  border: 2px solid #363636;
-  max-width: 700px;            /* větší grid */
-  max-height: 400px;
+  border: 2px solid #3a3a3a;
   width: 700px;
   height: 400px;
-  background-color: #000000;
+  background-color: #111111;       /* tmavý základ */
+  box-shadow: 0 0 10px #000 inset, 0 0 10px #000;
+  position: relative;
 }
 
 /* --------------------------------------
-   JEDNOTLIVÉ BUŇKY MŘÍŽKY
+   BUŇKY MŘÍŽKY
 ----------------------------------------- */
 .cell {
-  border: 1px solid #000000;
-  position: center;
+  border: 1px solid #1e1e1e;
+  position: relative;
   background-image: url('grid.png');
-  background-size: contain;
+  background-size: 80%;
   background-position: center;
   background-repeat: no-repeat;
-  width: 10%;
-  height: 10%;
 }
 
 /* --------------------------------------
    ROBOT KAREL
 ----------------------------------------- */
 #robot {
-  width: 480%;                  /* větší než předtím */
-  height: 480%;
+  width: 140%;                     /* větší než buňka, lehce přesahuje */
+  height: 140%;
   background-image: url('KarelRobot.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   position: absolute;
-  top: 10%;
-  left: 10%;
+  top: -20%;
+  left: -20%;
   transition: all 0.3s;
+  z-index: 10;
 }
 
 /* --------------------------------------
    BEEPERY (sbíratelné objekty)
 ----------------------------------------- */
 .beeper {
-  width: 40%;                  /* větší než předtím */
+  width: 40%;
   height: 40%;
-  background-color: blue;      /* modrá barva */
+  background-color: #6ca0ff;       /* modrý tón podle screenshotu */
   border-radius: 50%;
   position: absolute;
   bottom: 5%;
   right: 5%;
+  box-shadow: 0 0 8px #6ca0ff;
+  z-index: 5;
 }
