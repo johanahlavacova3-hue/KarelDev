@@ -30,6 +30,7 @@ body {
 #editor {
   flex: 1;
   font-family: monospace;
+  height: 800px;
   resize: none;
   padding: 12px;               /* větší padding */
   box-sizing: border-box;
@@ -78,16 +79,16 @@ button {
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  width: 100%;
-  height: 100%;
+  width: 10%;
+  height: 10%;
 }
 
 /* --------------------------------------
    ROBOT KAREL
 ----------------------------------------- */
 #robot {
-  width: 80%;                  /* větší než předtím */
-  height: 80%;
+  width: 180%;                  /* větší než předtím */
+  height: 180%;
   background-image: url('KarelRobot.png');
   background-size: contain;
   background-repeat: no-repeat;
