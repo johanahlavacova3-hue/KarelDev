@@ -74,7 +74,7 @@ button:hover {
   grid-template-rows: repeat(4, 1fr);
   border: 0px solid #2c2c2c;
   width: 700px;
-  height: 440px;
+  height: 420px;
   background-color: #0f0f0f;
 }
 
