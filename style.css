@@ -26,8 +26,7 @@ body {
   height: 400px;                  /* zarovnáno s gridem */
   width: 280px;
   background-color: #1b1b1b;
-  border: 1px solid #2c2c2c;
-  border-radius: 6px;
+  border: 0px solid #2c2c2c;
   box-shadow: 0 0 10px #000 inset;
   padding: 10px;
 }
@@ -47,7 +46,6 @@ body {
   border: none;
   outline: none;
   height: calc(100% - 60px);     /* natáhne se téměř po celý sidebar */
-  border-radius: 4px;
 }
 
 /* --------------------------------------
@@ -62,15 +60,13 @@ button {
   background-repeat: no-repeat;
   background-position: center;
   background-color: #1f1f1f;
-  border: 1px solid #2a2a2a;
-  border-radius: 4px;
+  border: 0px solid #2a2a2a;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   margin-top: 12px;
 }
 
 button:hover {
-  background-color: #2a2a2a;
   transform: scale(1.1);
 }
 
@@ -81,7 +77,7 @@ button:hover {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(4, 1fr);
-  border: 1px solid #2c2c2c;
+  border: 0px solid #2c2c2c;
   width: 700px;
   height: 400px;
   background-color: #0f0f0f;
@@ -92,7 +88,7 @@ button:hover {
    BUŇKY GRIDU
 ----------------------------------------- */
 .cell {
-  border: 1px solid #1a1a1a;
+  border: 0px solid #1a1a1a;
   position: relative;
   background-image: url('grid.png');
   background-size: contain;
