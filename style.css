@@ -26,8 +26,6 @@ body {
   height: 400px;                  /* zarovnáno s gridem */
   width: 280px;
   background-color: #1b1b1b;
-  border: 0px solid #2c2c2c;
-  box-shadow: 0 0 10px #000 inset;
   padding: 10px;
 }
 
@@ -60,7 +58,6 @@ button {
   background-repeat: no-repeat;
   background-position: center;
   background-color: #1f1f1f;
-  border: 0px solid #2a2a2a;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   margin-top: 12px;
@@ -81,14 +78,12 @@ button:hover {
   width: 700px;
   height: 400px;
   background-color: #0f0f0f;
-  box-shadow: 0 0 12px #000 inset;
 }
 
 /* --------------------------------------
    BUŇKY GRIDU
 ----------------------------------------- */
 .cell {
-  border: 0px solid #1a1a1a;
   position: relative;
   background-image: url('grid.png');
   background-size: contain;
