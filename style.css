@@ -4,29 +4,32 @@
 body {
   display: flex;
   flex-direction: row;
-  gap: 20px;
+  gap: 40px;
   font-family: monospace;
-  padding: 20px;
+  padding: 40px;
   height: 100vh;
   margin: 0;
   box-sizing: border-box;
-  background-color: #1a1a1a;      /* tmavé pozadí */
+  background-color: #121212; /* velmi tmavé pozadí */
   justify-content: center;
   align-items: center;
-  color: #bfbfbf;                 /* světle šedý text */
+  color: #d6d6d6;
 }
 
 /* --------------------------------------
-   POSTRANNÍ PANEL (EDITOR)
+   POSTRANNÍ PANEL
 ----------------------------------------- */
 .sidebar {
   display: flex;
   flex-direction: column;
-  width: 320px;
-  background-color: #202020;       /* o něco světlejší šedá než pozadí */
-  border: 2px solid #2d2d2d;       /* decentní orámování */
+  justify-content: space-between; /* editor nahoře, tlačítko dole */
+  height: 400px;                  /* zarovnáno s gridem */
+  width: 280px;
+  background-color: #1b1b1b;
+  border: 1px solid #2c2c2c;
   border-radius: 6px;
-  box-shadow: inset 0 0 10px #0a0a0a;
+  box-shadow: 0 0 10px #000 inset;
+  padding: 10px;
 }
 
 /* --------------------------------------
@@ -35,64 +38,64 @@ body {
 #editor {
   flex: 1;
   font-family: monospace;
-  height: 480px;
   resize: none;
-  padding: 12px;
+  padding: 10px;
   box-sizing: border-box;
   font-size: 15px;
-  color: #00ffcc;                  /* zeleno-tyrkysový text jako v terminálu */
-  background-color: #141414;       /* tmavé pozadí editoru */
+  color: #00ffc8;                /* zeleno-tyrkysový terminálový text */
+  background-color: #0f0f0f;
   border: none;
   outline: none;
+  height: calc(100% - 60px);     /* natáhne se téměř po celý sidebar */
+  border-radius: 4px;
 }
 
 /* --------------------------------------
    TLAČÍTKO SPUSTIT
 ----------------------------------------- */
 button {
-  margin: 12px auto;
-  width: 45px;
-  height: 45px;
+  align-self: center;
+  width: 36px;
+  height: 36px;
   background-image: url('Play.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  background-color: #2a2a2a;
-  border: 1px solid #3a3a3a;
+  background-color: #1f1f1f;
+  border: 1px solid #2a2a2a;
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+  margin-top: 12px;
 }
 
 button:hover {
-  background-color: #3a3a3a;
-  transform: scale(1.05);
+  background-color: #2a2a2a;
+  transform: scale(1.1);
 }
 
 /* --------------------------------------
-   MŘÍŽKA HERNÍHO SVĚTA
+   HERNÍ GRID
 ----------------------------------------- */
 #grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(4, 1fr);
-  gap: 0;
-  border: 2px solid #3a3a3a;
+  border: 1px solid #2c2c2c;
   width: 700px;
   height: 400px;
-  background-color: #111111;       /* tmavý základ */
-  box-shadow: 0 0 10px #000 inset, 0 0 10px #000;
-  position: relative;
+  background-color: #0f0f0f;
+  box-shadow: 0 0 12px #000 inset;
 }
 
 /* --------------------------------------
-   BUŇKY MŘÍŽKY
+   BUŇKY GRIDU
 ----------------------------------------- */
 .cell {
-  border: 1px solid #1e1e1e;
+  border: 1px solid #1a1a1a;
   position: relative;
   background-image: url('grid.png');
-  background-size: 80%;
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -101,30 +104,29 @@ button:hover {
    ROBOT KAREL
 ----------------------------------------- */
 #robot {
-  width: 140%;                     /* větší než buňka, lehce přesahuje */
-  height: 140%;
+  width: 120%;
+  height: 120%;
   background-image: url('KarelRobot.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   position: absolute;
-  top: -20%;
-  left: -20%;
+  top: -10%;
+  left: -10%;
   transition: all 0.3s;
   z-index: 10;
 }
 
 /* --------------------------------------
-   BEEPERY (sbíratelné objekty)
+   BEEPERY
 ----------------------------------------- */
 .beeper {
-  width: 40%;
-  height: 40%;
-  background-color: #6ca0ff;       /* modrý tón podle screenshotu */
+  width: 35%;
+  height: 35%;
+  background-color: #5b8dff;
   border-radius: 50%;
   position: absolute;
   bottom: 5%;
   right: 5%;
-  box-shadow: 0 0 8px #6ca0ff;
-  z-index: 5;
+  box-shadow: 0 0 8px #5b8dff;
 }
