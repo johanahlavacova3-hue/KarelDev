@@ -30,7 +30,7 @@ body {
 #editor {
   flex: 1;
   font-family: monospace;
-  height: 800px;
+  height: 400px;
   resize: none;
   padding: 12px;               /* větší padding */
   box-sizing: border-box;
