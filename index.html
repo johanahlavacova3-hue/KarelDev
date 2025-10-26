@@ -1,29 +1,8 @@
-<!DOCTYPE html>
-<html lang="cs">
-<head>
-<meta charset="UTF-8">
-<title>Karel The Robot 25'</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-<div class="sidebar">
-  <textarea id="editor" placeholder="Napiš svůj kód...
-například:
-move();
-turnLeft();
-putBeeper();
-move();"></textarea>
-  <button id="runBtn"></button>
-</div>
-
-<div id="grid"></div>
-
 <script>
-// --------------------------------------
-// Nastavení mřížky
-// --------------------------------------
 const grid = document.getElementById('grid');
+const runBtn = document.getElementById('runBtn');
+const editor = document.getElementById('editor');
+
 const GRID_COLS = 7;
 const GRID_ROWS = 4;
 
@@ -40,9 +19,6 @@ function createGrid() {
 }
 createGrid();
 
-// --------------------------------------
-// Robot
-// --------------------------------------
 const robot = document.createElement('div');
 robot.id = 'robot';
 grid.appendChild(robot);
@@ -59,30 +35,37 @@ function updateRobotRotation() {
 }
 updateRobotRotation();
 
-function resetWorld() {
-  posX = 0; posY = GRID_ROWS - 1; dir = 'right';
+function resetRobot() {
+  posX = 0; 
+  posY = GRID_ROWS - 1; 
+  dir = 'right';
   updateRobotRotation();
+
+  // odstranit robota z buněk
   document.querySelectorAll('#grid .cell').forEach(cell => {
     if (cell.contains(robot)) cell.removeChild(robot);
   });
-  grid.children[posY * GRID_COLS + posX].appendChild(robot);
+
+  // odstranit beepery
   document.querySelectorAll('.beeper').forEach(b => b.remove());
   document.querySelectorAll('#grid .cell').forEach(c => c.dataset.beepers = 0);
+
+  // znovu vložit robota
+  grid.children[posY * GRID_COLS + posX].appendChild(robot);
 }
 
-// --------------------------------------
-// Příkazy Karela
-// --------------------------------------
 function move() {
   let dx = 0, dy = 0;
   if (dir === 'right') dx = 1;
   if (dir === 'left') dx = -1;
   if (dir === 'up') dy = -1;
   if (dir === 'down') dy = 1;
+
   const newX = posX + dx, newY = posY + dy;
   if (newX < 0 || newX >= GRID_COLS || newY < 0 || newY >= GRID_ROWS) return;
   grid.children[posY * GRID_COLS + posX].removeChild(robot);
-  posX = newX; posY = newY;
+  posX = newX;
+  posY = newY;
   grid.children[posY * GRID_COLS + posX].appendChild(robot);
 }
 
@@ -91,14 +74,6 @@ function turnLeft() {
   else if (dir === 'left') dir = 'down';
   else if (dir === 'down') dir = 'right';
   else if (dir === 'right') dir = 'up';
-  updateRobotRotation();
-}
-
-function turnRight() {
-  if (dir === 'up') dir = 'right';
-  else if (dir === 'right') dir = 'down';
-  else if (dir === 'down') dir = 'left';
-  else if (dir === 'left') dir = 'up';
   updateRobotRotation();
 }
 
@@ -115,60 +90,22 @@ function pickBeeper() {
   if (beeper) beeper.remove();
 }
 
-function paintCorner(color = 'blue') {
-  const cell = grid.children[posY * GRID_COLS + posX];
-  cell.style.backgroundColor = color;
+function turnRight() {
+  if (dir === 'up') dir = 'right';
+  else if (dir === 'right') dir = 'down';
+  else if (dir === 'down') dir = 'left';
+  else if (dir === 'left') dir = 'up';
+  updateRobotRotation();
 }
 
-// --------------------------------------
-// Podmínky
-// --------------------------------------
-function frontIsClear() {
-  if (dir === 'up' && posY > 0) return true;
-  if (dir === 'down' && posY < GRID_ROWS - 1) return true;
-  if (dir === 'left' && posX > 0) return true;
-  if (dir === 'right' && posX < GRID_COLS - 1) return true;
-  return false;
-}
-function frontIsBlocked() { return !frontIsClear(); }
-
-function facingNorth() { return dir === 'up'; }
-function facingSouth() { return dir === 'down'; }
-function facingEast() { return dir === 'right'; }
-function facingWest() { return dir === 'left'; }
-
-function notFacingNorth() { return !facingNorth(); }
-function notFacingSouth() { return !facingSouth(); }
-function notFacingEast() { return !facingEast(); }
-function notFacingWest() { return !facingWest(); }
-
-function random(p = 0.5) {
-  return Math.random() < p;
-}
-
-// --------------------------------------
-// Spouštění uživatelského kódu
-// --------------------------------------
-function delay(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-async function runUserCode() {
-  resetWorld();
-  const code = document.getElementById('editor').value;
-  const lines = code.split('\n').filter(l => l.trim() !== '');
-  for (let line of lines) {
-    try {
-      await delay(300);
-      eval(line);
-    } catch (err) {
-      console.error(err);
-    }
+// 🔁 Spuštění kódu z editoru s automatickým resetem
+runBtn.addEventListener('click', () => {
+  resetRobot(); // 🧹 Vymaže vše před spuštěním
+  try {
+    const userCode = editor.value;
+    eval(userCode);
+  } catch (error) {
+    alert("❌ Chyba v kódu: " + error.message);
   }
-}
-
-document.getElementById('runBtn').addEventListener('click', runUserCode);
+});
 </script>
-
-</body>
-</html>
