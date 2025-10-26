@@ -114,9 +114,9 @@ button:hover {
    BEEPERY (sbíratelné objekty)
 ----------------------------------------- */
 .beeper {
-  position: absolute;
-  width: 35%;                 /* velikost v poměru k buňce */
-  height: 35%;
+  position: center;
+  width: 100%;                 /* velikost v poměru k buňce */
+  height: 100%;
   bottom: 10%;                /* umístění ke spodnímu okraji buňky */
   right: 10%;
   background-image: url('Beeper.png');
