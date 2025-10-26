@@ -47,7 +47,7 @@ body {
 }
 
 /* --------------------------------------
-   TLAČÍTKO SPUSTIT
+   TLAČÍTKO SPUSTIT (jen samotné PNG)
 ----------------------------------------- */
 button {
   align-self: center;
@@ -58,7 +58,11 @@ button {
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  border: none;              /* odstraní rámeček */
+  background-color: transparent; /* žádné pozadí */
+  padding: 0;                /* žádné vnitřní odsazení */
+  outline: none;             /* žádná obrysová čára při focusu */
+  transition: transform 0.2s ease-in-out;
 }
 
 button:hover {
